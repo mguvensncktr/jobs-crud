@@ -1,13 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import JobsScreen from './src/screens/JobsScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import AppContainer from './src/navigation';
 
 export default function App() {
   return (
-    <>
-      <JobsScreen />
-      <StatusBar style="auto" />
-    </>
-
+    <NavigationContainer>
+      <AppContainer />
+    </NavigationContainer>
   );
 }
