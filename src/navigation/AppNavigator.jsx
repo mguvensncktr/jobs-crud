@@ -1,4 +1,4 @@
-import React from "react";
+// stack navigator
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //screens
