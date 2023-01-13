@@ -1,3 +1,4 @@
+// components, styles
 import { ActivityIndicator, View } from "react-native";
 import styles from "./styles";
 
