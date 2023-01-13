@@ -1,4 +1,4 @@
-import { FlatList, Text } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getAllJobs } from "../../services/jobs";
 import Loading from "../../components/common/Loading";
@@ -20,14 +20,35 @@ const JobsScreen = () => {
       {loading ? (
         <Loading />
       ) : (
-        <FlatList
-          data={jobs || []}
-          keyExtractor={(item) => `job/${item.id}`}
-          initialNumToRender={5}
-          showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => <JobItem job={item} />}
-          style={{ flex: 1, paddingHorizontal: 15, marginVertical: 10 }}
-        />
+        <View style={{ flex: 1, backgroundColor: "white", paddingBottom: 10 }}>
+          <View
+            style={{
+              width: "100%",
+              height: 100,
+              backgroundColor: "#1D212D",
+              justifyContent: "center",
+            }}
+          >
+            <Text
+              style={{
+                color: "white",
+                marginLeft: 20,
+                fontSize: 24,
+                fontWeight: "bold",
+              }}
+            >
+              Find a Job
+            </Text>
+          </View>
+          <FlatList
+            data={jobs || []}
+            keyExtractor={(item) => `job/${item.id}`}
+            initialNumToRender={5}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => <JobItem job={item} />}
+            style={{ flex: 1, paddingHorizontal: 15, paddingTop: 10 }}
+          />
+        </View>
       )}
     </>
   );
