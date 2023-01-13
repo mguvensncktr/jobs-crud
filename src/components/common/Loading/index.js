@@ -4,7 +4,7 @@ import styles from "./styles";
 
 const Loading = () => {
   return (
-    <View style={styles.loadingIndicator}>
+    <View style={styles.loadingIndicator} testID="loading">
       <ActivityIndicator size="large" color={"#DB4914"} />
     </View>
   );
