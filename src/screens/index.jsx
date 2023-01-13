@@ -1,3 +1,5 @@
 import JobsScreen from "./JobsScreen";
+import AddJobScreen from "./AddJobScreen";
+import JobDetailScreen from "./JobDetailScreen";
 
-export { JobsScreen };
+export { JobsScreen, AddJobScreen, JobDetailScreen };
