@@ -1,10 +1,16 @@
-import { useRef, useState } from "react";
+// components, styles
 import { View, Text, TouchableOpacity, TextInput, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import styles from "./styles";
+
+// hooks
+import { useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+
+// services
 import { addNewJob } from "../../services/jobs";
 
 const AddJobScreen = () => {
@@ -70,89 +76,36 @@ const AddJobScreen = () => {
       contentContainerStyle={{ flex: 1 }}
       showsVerticalScrollIndicator={false}
     >
-      <TouchableOpacity
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          marginLeft: 10,
-        }}
-        onPress={handleGoBack}
-      >
+      <TouchableOpacity style={styles.goBackTouchable} onPress={handleGoBack}>
         <Ionicons name="arrow-back" size={26} color="#DB4914" />
-        <Text style={{ color: "#DB4914", marginLeft: 5, fontSize: 20 }}>
-          Geri Dön
-        </Text>
+        <Text style={styles.goBackText}>Geri Dön</Text>
       </TouchableOpacity>
-      <Text
-        style={{
-          color: "white",
-          marginTop: 30,
-          marginLeft: 10,
-          fontSize: 24,
-          fontWeight: "bold",
-        }}
-      >
-        Yeni iş ilanı oluştur
-      </Text>
-      <View style={{ marginLeft: 10, marginTop: 10 }}>
-        <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>
-          İş Ünvanı
-        </Text>
+      <Text style={styles.newJobPostHeader}>Yeni iş ilanı oluştur</Text>
+      <View style={styles.fieldContainer}>
+        <Text style={styles.titleHeader}>İş Ünvanı</Text>
         <TextInput
           value={jobTitle}
           onChangeText={setJobTitle}
-          style={{
-            backgroundColor: "white",
-            height: 35,
-            marginRight: 10,
-            marginVertical: 10,
-            borderRadius: 10,
-            fontSize: 16,
-            fontWeight: "600",
-            paddingHorizontal: 10,
-          }}
+          style={styles.titleInput}
           autoCapitalize="words"
         />
       </View>
-      <View style={{ marginLeft: 10, marginTop: 10 }}>
-        <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>
-          İş Sahibi
-        </Text>
+      <View style={styles.fieldContainer}>
+        <Text style={styles.titleHeader}>İş Sahibi</Text>
         <TextInput
           value={jobOwner}
           onChangeText={setJobOwner}
-          style={{
-            backgroundColor: "white",
-            height: 35,
-            marginRight: 10,
-            marginVertical: 10,
-            borderRadius: 10,
-            fontSize: 16,
-            fontWeight: "600",
-            paddingHorizontal: 10,
-          }}
+          style={styles.titleInput}
           autoCapitalize="words"
         />
       </View>
-      <View
-        style={{
-          marginLeft: 10,
-          marginTop: 10,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>
-          İlan Başlangıç Tarihi
-        </Text>
+      <View style={styles.jobStartDateContainer}>
+        <Text style={styles.titleHeader}>İlan Başlangıç Tarihi</Text>
         <TouchableOpacity
           onPress={() => setOpenStartDateModal(true)}
           style={{ marginRight: 20 }}
         >
-          <Text style={{ color: "#DB4914", fontSize: 18, fontWeight: "500" }}>
-            Tarih Seç
-          </Text>
+          <Text style={styles.pickDateText}>Tarih Seç</Text>
         </TouchableOpacity>
         <DateTimePickerModal
           isVisible={openStartDateModal}
@@ -168,30 +121,14 @@ const AddJobScreen = () => {
           onCancel={() => setOpenStartDateModal(false)}
         />
       </View>
-      <Text
-        style={{ color: "white", marginLeft: 10, marginTop: 5, fontSize: 16 }}
-      >
-        {jobStartDate}
-      </Text>
-      <View
-        style={{
-          marginLeft: 10,
-          marginTop: 10,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>
-          İlan Bitiş Tarihi
-        </Text>
+      <Text style={styles.startAndEndDateText}>{jobStartDate}</Text>
+      <View style={styles.jobStartDateContainer}>
+        <Text style={styles.titleHeader}>İlan Bitiş Tarihi</Text>
         <TouchableOpacity
           onPress={() => setOpenEndDateModal(true)}
           style={{ marginRight: 20 }}
         >
-          <Text style={{ color: "#DB4914", fontSize: 18, fontWeight: "500" }}>
-            Tarih Seç
-          </Text>
+          <Text style={styles.pickDateText}>Tarih Seç</Text>
         </TouchableOpacity>
         <DateTimePickerModal
           isVisible={openEndDateModal}
@@ -207,60 +144,27 @@ const AddJobScreen = () => {
           onCancel={() => setOpenEndDateModal(false)}
         />
       </View>
-      <Text
-        style={{ color: "white", marginLeft: 10, marginTop: 5, fontSize: 16 }}
-      >
-        {jobEndDate}
-      </Text>
-      <View style={{ marginLeft: 10, marginTop: 10 }}>
-        <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>
-          İş Açıklaması
-        </Text>
+      <Text style={styles.startAndEndDateText}>{jobEndDate}</Text>
+      <View style={styles.fieldContainer}>
+        <Text style={styles.titleHeader}>İş Açıklaması</Text>
         <TextInput
           value={jobDescription}
           onChangeText={setJobDescription}
-          style={{
-            backgroundColor: "white",
-            minHeight: 120,
-            marginRight: 10,
-            marginVertical: 10,
-            borderRadius: 10,
-            fontSize: 16,
-            fontWeight: "600",
-            paddingHorizontal: 10,
-          }}
+          style={styles.descriptionInput}
           multiline
           maxLength={200}
           ref={descriptionRef}
           onBlur={() => descriptionRef.current?.blur()}
         />
-        <Text
-          style={{
-            color: "#4E586E",
-            position: "absolute",
-            bottom: -10,
-            right: 10,
-          }}
-        >
+        <Text style={styles.remainingCharactersText}>
           {jobDescription.length} / 200
         </Text>
       </View>
       <TouchableOpacity
-        style={{
-          width: 200,
-          height: 50,
-          borderRadius: 20,
-          backgroundColor: "#DB4914",
-          justifyContent: "center",
-          alignItems: "center",
-          alignSelf: "center",
-          marginTop: 20,
-        }}
+        style={styles.submitButtonContainer}
         onPress={handleSubmit}
       >
-        <Text style={{ color: "white", fontSize: 20, fontWeight: "600" }}>
-          İlanı Oluştur
-        </Text>
+        <Text style={styles.submitButtonText}>İlanı Oluştur</Text>
       </TouchableOpacity>
     </KeyboardAwareScrollView>
   );
