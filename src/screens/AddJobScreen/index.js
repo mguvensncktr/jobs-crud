@@ -53,6 +53,7 @@ const AddJobScreen = () => {
           jobEndDate,
           jobDescription
         );
+        // response.success === 1 olsaydı yapılması gerekiyordu aslında fakat sunucu tarafında hata olduğu için simule etmek zorunda kaldım.
         if (response.success === 0) {
           Alert.alert("Başarılı!", "İlan başarılı şekilde paylaşıldı.", [
             {
@@ -113,8 +114,8 @@ const AddJobScreen = () => {
           onConfirm={(date) => {
             setJobStartDate(
               date.toJSON().slice(0, 10).replaceAll("/", "-") +
-                " " +
-                new Date().toTimeString().slice(0, 5)
+              " " +
+              new Date().toTimeString().slice(0, 5)
             ),
               setOpenStartDateModal(false);
           }}
@@ -136,8 +137,8 @@ const AddJobScreen = () => {
           onConfirm={(date) => {
             setJobEndDate(
               date.toJSON().slice(0, 10).replaceAll("/", "-") +
-                " " +
-                new Date().toTimeString().slice(0, 5)
+              " " +
+              new Date().toTimeString().slice(0, 5)
             ),
               setOpenEndDateModal(false);
           }}
