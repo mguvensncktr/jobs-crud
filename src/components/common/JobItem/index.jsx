@@ -1,7 +1,11 @@
-import { View, Text, Pressable } from "react-native";
-import React from "react";
-import { getJobDate, getJobDateWithMomentJS } from "../../../utils/getJobDate";
+// components, styles
+import { Text, Pressable } from "react-native";
 import styles from "./styles";
+
+// helper functions
+import { getJobDate, getJobDateWithMomentJS } from "../../../utils/getJobDate";
+
+// hooks
 import { useNavigation } from "@react-navigation/native";
 
 const JobItem = ({ job }) => {
@@ -25,29 +29,12 @@ const JobItem = ({ job }) => {
 
   return (
     <Pressable style={styles.container} onPress={handleJobItemPressed}>
-      <Text style={{ color: "#DB4914", fontSize: 16, fontWeight: "bold" }}>
-        {job.job_title}
-      </Text>
-      <Text
-        style={{
-          color: "#a5adbe",
-          fontSize: 14,
-          fontWeight: "600",
-          marginVertical: 5,
-        }}
-      >
-        {job.job_owner}
-      </Text>
-      <Text
-        style={{ color: "white", marginVertical: 5 }}
-        numberOfLines={2}
-        ellipsizeMode="tail"
-      >
+      <Text style={styles.titleHeading}>{job.job_title}</Text>
+      <Text style={styles.ownerHeading}>{job.job_owner}</Text>
+      <Text style={styles.description} numberOfLines={2} ellipsizeMode="tail">
         {job.job_description}
       </Text>
-      <Text
-        style={{ color: getJobDateColor(), textAlign: "right", marginTop: 5 }}
-      >
+      <Text style={[{ color: getJobDateColor() }, styles.date]}>
         {getJobDate(job.job_start_date, job.job_end_date)}
       </Text>
     </Pressable>
