@@ -1,9 +1,15 @@
+// components, styles
 import { FlatList, RefreshControl, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
-import { getAllJobs } from "../../services/jobs";
 import Loading from "../../components/common/Loading";
 import JobItem from "../../components/common/JobItem";
 import AddJobFAB from "../../components/common/AddJobFAB";
+import styles from "./styles";
+
+// hooks
+import { useEffect, useState } from "react";
+
+// services
+import { getAllJobs } from "../../services/jobs";
 
 const JobsScreen = () => {
   const [jobs, setJobs] = useState([]);
@@ -30,41 +36,20 @@ const JobsScreen = () => {
 
   const listEmptyComponent = () => {
     return (
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ color: "white", fontSize: 24, fontWeight: "bold" }}>
-          İlanda olan hiç iş bulamadık!
-        </Text>
+      <View style={styles.emptyListContainer}>
+        <Text style={styles.emptyListText}>İlanda olan hiç iş bulamadık!</Text>
       </View>
     );
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#1D212D", paddingBottom: 10 }}>
+    <View style={styles.container}>
       {loading ? (
         <Loading />
       ) : (
         <>
-          <View
-            style={{
-              width: "100%",
-              height: 100,
-              backgroundColor: "#1D212D",
-              justifyContent: "center",
-              borderBottomWidth: 1,
-              borderBottomColor: "#292D32",
-            }}
-          >
-            <Text
-              style={{
-                color: "white",
-                marginLeft: 20,
-                fontSize: 24,
-                fontWeight: "bold",
-                marginTop: 10,
-              }}
-            >
-              İş Ara
-            </Text>
+          <View style={styles.headerContainer}>
+            <Text style={styles.headerText}>İş Ara</Text>
           </View>
           <FlatList
             data={jobs || []}
@@ -72,7 +57,7 @@ const JobsScreen = () => {
             initialNumToRender={5}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => <JobItem job={item} />}
-            style={{ flex: 1, paddingHorizontal: 15, paddingTop: 10 }}
+            style={styles.flatListContainer}
             ListEmptyComponent={listEmptyComponent}
             refreshControl={
               <RefreshControl
