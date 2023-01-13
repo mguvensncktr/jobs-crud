@@ -27,7 +27,7 @@ const JobItem = ({ job }) => {
         {job.job_description}
       </Text>
       <Text style={{ color: "#9f9fa1", textAlign: "right", marginTop: 5 }}>
-        {getJobDateWithMomentJS(job.job_start_date, job.job_end_date)}
+        {getJobDate(job.job_start_date, job.job_end_date)}
       </Text>
     </View>
   );
