@@ -1,9 +1,12 @@
+// components, styles
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import styles from "./styles";
+
+// hooks
 import { useRoute, useNavigation } from "@react-navigation/native";
+
+// helper functions
 import { getJobDate } from "../../utils/getJobDate";
 
 const JobDetailScreen = () => {
@@ -27,123 +30,64 @@ const JobDetailScreen = () => {
     job?.job_end_date
   ).includes("yayınlanacak");
 
+  const lastApplicationDate =
+    new Date(job?.job_end_date.replace(/-/g, "/") + ":00")
+      .toLocaleDateString()
+      .slice(0, 10)
+      .replaceAll("-", "/") +
+    " " +
+    job?.job_end_date.slice(10, 16);
+
   return (
-    <ScrollView
-      style={{
-        backgroundColor: "#1D212D",
-        paddingTop: getStatusBarHeight() + 10,
-        flex: 1,
-      }}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={{ flex: 1, paddingBottom: 45 }}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <View style={styles.subContainer}>
         <TouchableOpacity
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            marginLeft: 10,
-          }}
+          style={styles.goBackButtonContainer}
           onPress={handleGoBack}
         >
           <Ionicons name="arrow-back" size={26} color="#DB4914" />
-          <Text style={{ color: "#DB4914", marginLeft: 5, fontSize: 20 }}>
-            Geri
-          </Text>
+          <Text style={styles.goBackText}>Geri</Text>
         </TouchableOpacity>
-        <View
-          style={{
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>
+        <View style={styles.fieldContainer}>
+          <Text style={styles.fieldHeader}>
             İş Ünvanı:{" "}
             <Text style={{ color: "#DB4914" }}>{job?.job_title}</Text>
           </Text>
         </View>
-        <View
-          style={{
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>
-            İş Hakkında
-          </Text>
-          <Text style={{ color: "white", fontSize: 16, marginTop: 10 }}>
-            {job?.job_description}
-          </Text>
+        <View style={styles.fieldContainer}>
+          <Text style={styles.fieldHeader}>İş Hakkında</Text>
+          <Text style={styles.descriptionText}>{job?.job_description}</Text>
         </View>
-        <View
-          style={{
-            marginHorizontal: 10,
-            marginTop: 20,
-          }}
-        >
-          <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>
+        <View style={styles.fieldContainer}>
+          <Text style={styles.fieldHeader}>
             İşi Yayınlayan:{" "}
             <Text style={{ color: "#DB4914" }}>{job?.job_owner}</Text>
           </Text>
         </View>
-        <View
-          style={{
-            marginHorizontal: 10,
-            marginTop: 20,
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
+        <View style={styles.applicationDateContainer}>
           {isStillAcceptsApplication ? (
             <>
-              <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
+              <Text style={styles.lastApplicationDateText}>
                 Başvuru için son tarih:
               </Text>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: "500",
-                  marginLeft: 5,
-                }}
-              >
+              <Text style={styles.noApplicationsText}>
                 Başvuru kabul etmiyor
               </Text>
             </>
           ) : isNotAvailableYet ? (
             <>
-              <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
+              <Text style={styles.lastApplicationDateText}>
                 Başvuru için son tarih:
               </Text>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: "600",
-                  marginLeft: 5,
-                }}
-              >
-                Henüz başlamadı!
-              </Text>
+              <Text style={styles.noApplicationsText}>Henüz başlamadı!</Text>
             </>
           ) : (
             <>
-              <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
+              <Text style={styles.lastApplicationDateText}>
                 Başvuru için son tarih:
               </Text>
-              <Text
-                style={{
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: "600",
-                  marginLeft: 5,
-                }}
-              >
-                {new Date(job?.job_end_date.replace(/-/g, "/") + ":00")
-                  .toLocaleDateString()
-                  .slice(0, 10)
-                  .replaceAll("-", "/") +
-                  " " +
-                  job?.job_end_date.slice(10, 16)}
+              <Text style={styles.noApplicationsText}>
+                {lastApplicationDate}
               </Text>
             </>
           )}
