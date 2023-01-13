@@ -5,8 +5,11 @@ import styles from "./styles";
 // helper functions
 import { getJobDate, getJobDateWithMomentJS } from "../../../utils/getJobDate";
 
+// hooks
+import { useNavigation } from "@react-navigation/native";
 
-const JobItem = ({ job, navigation }) => {
+const JobItem = ({ job }) => {
+  const navigation = useNavigation();
 
   const handleJobItemPressed = () => {
     navigation.navigate("JobDetails", { job });

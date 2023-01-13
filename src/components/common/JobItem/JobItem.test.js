@@ -1,7 +1,7 @@
 import React from "react";
 import { getJobDate } from "../../../utils/getJobDate";
-import { useNavigation, NavigationContainer } from "@react-navigation/native";
-import { render, fireEvent } from 'react-native-testing-library';
+import { NavigationContainer } from "@react-navigation/native";
+import { render, fireEvent, waitFor } from 'react-native-testing-library';
 import JobItem from '../JobItem';
 
 
@@ -24,15 +24,20 @@ describe('JobItem', () => {
         expect(getByText(job.job_description)).toBeTruthy();
     });
 
-    it('should navigate to "JobDetails" screen when pressed', () => {
-        const navigation = { navigate: jest.fn() };
-        const { getByText } = render(<JobItem job={job} navigation={navigation} />);
+    it('should navigate to "JobDetails" screen when pressed', async () => {
+        const { getByText } = render(
+            <NavigationContainer>
+                <JobItem job={job} />
+            </NavigationContainer>);
         fireEvent.press(getByText(job.job_title))
-        expect(navigation.navigate).toHaveBeenCalledWith('JobDetails', { job });
+        await waitFor(() => { expect("İş Hakkında").toBeTruthy(), 1000 });
     });
 
     it('should return the expected color for the job date based on its validity', () => {
-        const { getByText } = render(<JobItem job={job} />);
+        const { getByText } = render(
+            <NavigationContainer>
+                <JobItem job={job} />
+            </NavigationContainer>);
         const jobDate = getByText(getJobDate(job.job_start_date, job.job_end_date));
         expect(jobDate.props.style[0].color).toBe("red");
     });

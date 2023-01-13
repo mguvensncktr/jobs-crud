@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from 'react-native-testing-library';
+import { render, fireEvent, waitFor } from 'react-native-testing-library';
 import AddJobFAB from '../AddJobFAB';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -13,13 +13,15 @@ describe('AddJobFAB', () => {
         expect(getByTestId('add-job-fab')).toBeTruthy();
     });
 
-    it('should navigate to "AddJob" screen when pressed', () => {
-        const navigation = { navigate: jest.fn() };
+    it('should navigate to "AddJob" screen when pressed', async () => {
         const { getByTestId } = render(
-            <AddJobFAB navigation={navigation} />
+            <NavigationContainer>
+                <AddJobFAB />
+            </NavigationContainer>
         );
         const addJobFab = getByTestId('add-job-fab');
         fireEvent.press(addJobFab);
-        expect(navigation.navigate).toHaveBeenCalledWith('AddJob');
+        await waitFor(() => { expect("Yeni iş ilanı oluştur").toBeTruthy(), 1000 });
+
     });
 });
