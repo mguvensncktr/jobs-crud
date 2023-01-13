@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { getJobDate } from "../../../utils/getJobDate";
+import { getJobDate, getJobDateWithMomentJS } from "../../../utils/getJobDate";
 import styles from "./styles";
 
 const JobItem = ({ job }) => {
@@ -27,7 +27,7 @@ const JobItem = ({ job }) => {
         {job.job_description}
       </Text>
       <Text style={{ color: "#9f9fa1", textAlign: "right", marginTop: 5 }}>
-        {getJobDate(job.job_start_date, job.job_end_date)}
+        {getJobDateWithMomentJS(job.job_start_date, job.job_end_date)}
       </Text>
     </View>
   );
