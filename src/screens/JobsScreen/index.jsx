@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getAllJobs } from "../../services/jobs";
 import Loading from "../../components/common/Loading";
 import JobItem from "../../components/common/JobItem";
+import AddJobFAB from "../../components/common/AddJobFAB";
 
 const JobsScreen = () => {
   const [jobs, setJobs] = useState([]);
@@ -48,6 +49,7 @@ const JobsScreen = () => {
             renderItem={({ item }) => <JobItem job={item} />}
             style={{ flex: 1, paddingHorizontal: 15, paddingTop: 10 }}
           />
+          <AddJobFAB />
         </View>
       )}
     </>
