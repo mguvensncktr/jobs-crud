@@ -1,8 +1,10 @@
-import React from "react";
+// styles and components
 import { TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import styles from "./styles";
 import { FontAwesome } from "@expo/vector-icons";
+import styles from "./styles";
+
+// hooks
+import { useNavigation } from "@react-navigation/native";
 
 const AddJobFAB = () => {
   const navigation = useNavigation();
