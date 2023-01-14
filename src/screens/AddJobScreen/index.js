@@ -54,7 +54,6 @@ const AddJobScreen = () => {
 					jobEndDate,
 					jobDescription
 				);
-				// response.success === 1 olsaydı yapılması gerekiyordu aslında fakat sunucu tarafında hata olduğu için simule etmek zorunda kaldım.
 				if (response.success === 0) {
 					Alert.alert("Başarısız!", "İlan paylaşılamadı, lütfen daha sonra tekrar deneyin.", [
 						{
