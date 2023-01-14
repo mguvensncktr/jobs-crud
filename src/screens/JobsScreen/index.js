@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 // services
 import { getAllJobs } from "../../services/jobs";
 
-const JobsScreen = () => {
+const JobsScreen = ({ navigation }) => {
 	const [jobs, setJobs] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [refreshLoading, setRefreshLoading] = useState(false);
@@ -82,7 +82,7 @@ const JobsScreen = () => {
 						keyExtractor={(item) => `job/${item.id}`}
 						initialNumToRender={5}
 						showsVerticalScrollIndicator={false}
-						renderItem={({ item }) => <JobItem job={item} />}
+						renderItem={({ item }) => <JobItem job={item} navigation={navigation} />}
 						style={styles.flatListContainer}
 						ListEmptyComponent={listEmptyComponent}
 						refreshControl={
