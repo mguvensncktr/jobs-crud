@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         borderBottomWidth: 1,
         borderBottomColor: "#292D32",
+        marginTop: 20
     },
     headerText: {
         color: "white",
