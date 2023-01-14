@@ -38,6 +38,57 @@ const JobDetailScreen = () => {
     " " +
     job?.job_end_date.slice(10, 16);
 
+  const headerWithTextField = (header, text) => {
+    return (
+      header.includes("Ünvan") ?
+        (<View style={styles.fieldContainer}>
+          <Text style={styles.fieldHeader}>
+            {header}{" "}
+            <Text style={{ color: COLORS.secondary }}>{text}</Text>
+          </Text>
+        </View>) :
+        header.includes("Hakkında") ?
+          <View style={styles.fieldContainer}>
+            <Text style={styles.fieldHeader}>{header}</Text>
+            <Text style={styles.descriptionText}>{text}</Text>
+          </View> :
+          <View style={styles.fieldContainer}>
+            <Text style={styles.fieldHeader}>
+              {header}{" "}
+              <Text style={{ color: COLORS.secondary }}>{text}</Text>
+            </Text>
+          </View>
+    )
+  }
+
+  const lastDateForApplication = (header = "Başvuru için son tarih:") => {
+    return (
+      isStillAcceptsApplication ?
+        <>
+          <Text style={styles.lastApplicationDateText}>
+            {header}
+          </Text>
+          <Text style={styles.noApplicationsText}>
+            {"Başvuru kabul etmiyor"}
+          </Text>
+        </> : isNotAvailableYet ?
+          <>
+            <Text style={styles.lastApplicationDateText}>
+              {header}
+            </Text>
+            <Text style={styles.noApplicationsText}>{"Henüz başlamadı!"}</Text>
+          </> :
+          <>
+            <Text style={styles.lastApplicationDateText}>
+              {header}
+            </Text>
+            <Text style={styles.noApplicationsText}>
+              {lastApplicationDate}
+            </Text>
+          </>
+    )
+  }
+
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.subContainer}>
@@ -48,49 +99,11 @@ const JobDetailScreen = () => {
           <Ionicons name="arrow-back" size={26} color={COLORS.secondary} />
           <Text style={styles.goBackText}>Geri</Text>
         </TouchableOpacity>
-        <View style={styles.fieldContainer}>
-          <Text style={styles.fieldHeader}>
-            İş Ünvanı:{" "}
-            <Text style={{ color: COLORS.secondary }}>{job?.job_title}</Text>
-          </Text>
-        </View>
-        <View style={styles.fieldContainer}>
-          <Text style={styles.fieldHeader}>İş Hakkında</Text>
-          <Text style={styles.descriptionText}>{job?.job_description}</Text>
-        </View>
-        <View style={styles.fieldContainer}>
-          <Text style={styles.fieldHeader}>
-            İşi Yayınlayan:{" "}
-            <Text style={{ color: COLORS.secondary }}>{job?.job_owner}</Text>
-          </Text>
-        </View>
+        {headerWithTextField("İş Ünvanı:", job?.job_title)}
+        {headerWithTextField("İş Hakkında", job?.job_description)}
+        {headerWithTextField("İşi Yayınlayan:", job?.job_owner)}
         <View style={styles.applicationDateContainer}>
-          {isStillAcceptsApplication ? (
-            <>
-              <Text style={styles.lastApplicationDateText}>
-                Başvuru için son tarih:
-              </Text>
-              <Text style={styles.noApplicationsText}>
-                Başvuru kabul etmiyor
-              </Text>
-            </>
-          ) : isNotAvailableYet ? (
-            <>
-              <Text style={styles.lastApplicationDateText}>
-                Başvuru için son tarih:
-              </Text>
-              <Text style={styles.noApplicationsText}>Henüz başlamadı!</Text>
-            </>
-          ) : (
-            <>
-              <Text style={styles.lastApplicationDateText}>
-                Başvuru için son tarih:
-              </Text>
-              <Text style={styles.noApplicationsText}>
-                {lastApplicationDate}
-              </Text>
-            </>
-          )}
+          {lastDateForApplication()}
         </View>
       </View>
     </ScrollView>
