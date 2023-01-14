@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from 'react-native-testing-library';
-import AddJobFAB from '../AddJobFAB';
+import AddJobFAB from '../components/common/AddJobFAB';
 import { NavigationContainer } from '@react-navigation/native';
 
 describe('AddJobFAB', () => {

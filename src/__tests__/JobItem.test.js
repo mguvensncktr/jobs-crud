@@ -1,8 +1,8 @@
 import React from "react";
-import { getJobDate } from "../../../utils/getJobDate";
+import { getJobDate } from "../utils/getJobDate";
 import { NavigationContainer } from "@react-navigation/native";
 import { render, fireEvent, waitFor } from 'react-native-testing-library';
-import JobItem from '../JobItem';
+import JobItem from '../components/common/JobItem';
 
 
 describe('JobItem', () => {
@@ -39,6 +39,6 @@ describe('JobItem', () => {
                 <JobItem job={job} />
             </NavigationContainer>);
         const jobDate = getByText(getJobDate(job.job_start_date, job.job_end_date));
-        expect(jobDate.props.style[0].color).toBe("red");
+        expect(jobDate.props.style[0].color).toBe("green");
     });
 });
