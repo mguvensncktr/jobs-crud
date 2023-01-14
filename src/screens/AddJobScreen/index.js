@@ -62,8 +62,7 @@ const AddJobScreen = () => {
 							onPress: () => navigation.goBack(),
 						},
 					]);
-				}
-				if (response.success === 1) {
+				} else {
 					Alert.alert("Başarılı!", "İlanınız başarıyla paylaşıldı!", [
 						{
 							text: "Tamam",
