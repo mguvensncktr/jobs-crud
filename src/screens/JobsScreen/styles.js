@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import { COLORS, SIZES } from '../../theme';
 
 const styles = StyleSheet.create({
     emptyListContainer: {
@@ -6,28 +7,28 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     emptyListText: {
-        color: "white",
-        fontSize: 24,
+        color: COLORS.white,
+        fontSize: SIZES.xl,
         fontWeight: "bold"
     },
     container: {
         flex: 1,
-        backgroundColor: "#1D212D",
+        backgroundColor: COLORS.primary,
         paddingBottom: 10
     },
     headerContainer: {
         width: "100%",
         height: 100,
-        backgroundColor: "#1D212D",
+        backgroundColor: COLORS.primary,
         justifyContent: "center",
         borderBottomWidth: 1,
-        borderBottomColor: "#292D32",
+        borderBottomColor: COLORS.border,
         marginTop: 20
     },
     headerText: {
-        color: "white",
+        color: COLORS.white,
         marginLeft: 20,
-        fontSize: 24,
+        fontSize: SIZES.xl,
         fontWeight: "bold",
         marginTop: 10,
     },
@@ -35,6 +36,15 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 15,
         paddingTop: 10
+    },
+    searchInput: {
+        height: 40,
+        borderColor: COLORS.lightBlue,
+        borderWidth: 1,
+        padding: 10,
+        margin: 15,
+        borderRadius: SIZES.radiusS,
+        color: COLORS.white
     }
 })
 

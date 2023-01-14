@@ -2,6 +2,7 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
+import { COLORS } from "../../theme";
 
 // hooks
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -31,10 +32,9 @@ const JobDetailScreen = () => {
   ).includes("yayınlanacak");
 
   const lastApplicationDate =
-    new Date(job?.job_end_date.replace(/-/g, "/") + ":00")
+    new Date(job?.job_end_date.replaceAll("-", "/"))
       .toLocaleDateString()
-      .slice(0, 10)
-      .replaceAll("-", "/") +
+      .slice(0, 10) +
     " " +
     job?.job_end_date.slice(10, 16);
 
@@ -45,13 +45,13 @@ const JobDetailScreen = () => {
           style={styles.goBackButtonContainer}
           onPress={handleGoBack}
         >
-          <Ionicons name="arrow-back" size={26} color="#DB4914" />
+          <Ionicons name="arrow-back" size={26} color={COLORS.secondary} />
           <Text style={styles.goBackText}>Geri</Text>
         </TouchableOpacity>
         <View style={styles.fieldContainer}>
           <Text style={styles.fieldHeader}>
             İş Ünvanı:{" "}
-            <Text style={{ color: "#DB4914" }}>{job?.job_title}</Text>
+            <Text style={{ color: COLORS.secondary }}>{job?.job_title}</Text>
           </Text>
         </View>
         <View style={styles.fieldContainer}>
@@ -61,7 +61,7 @@ const JobDetailScreen = () => {
         <View style={styles.fieldContainer}>
           <Text style={styles.fieldHeader}>
             İşi Yayınlayan:{" "}
-            <Text style={{ color: "#DB4914" }}>{job?.job_owner}</Text>
+            <Text style={{ color: COLORS.secondary }}>{job?.job_owner}</Text>
           </Text>
         </View>
         <View style={styles.applicationDateContainer}>

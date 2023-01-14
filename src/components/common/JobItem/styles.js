@@ -1,24 +1,25 @@
 import { StyleSheet } from "react-native";
+import { COLORS, SIZES } from '../../../theme';
 
 const styles = StyleSheet.create({
     container: {
         width: '100%',
         minHeight: 100,
-        backgroundColor: '#1D212D',
-        borderRadius: 20,
+        backgroundColor: COLORS.primary,
+        borderRadius: SIZES.radiusL,
         marginBottom: 10,
         padding: 15,
         borderWidth: 1,
-        borderColor: '#4E586E',
+        borderColor: COLORS.lightBlue,
     },
     titleHeading: {
-        color: "#DB4914",
-        fontSize: 16,
+        color: COLORS.secondary,
+        fontSize: SIZES.reg,
         fontWeight: "bold"
     },
     ownerHeading: {
-        color: "#a5adbe",
-        fontSize: 14,
+        color: COLORS.gray,
+        fontSize: SIZES.font,
         fontWeight: "600",
         marginVertical: 5,
     },

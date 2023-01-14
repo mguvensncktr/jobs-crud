@@ -1,6 +1,7 @@
 // components, styles
 import { Text, Pressable } from "react-native";
 import styles from "./styles";
+import { COLORS } from "../../../theme";
 
 // helper functions
 import { getJobDate, getJobDateWithMomentJS } from "../../../utils/getJobDate";
@@ -24,7 +25,7 @@ const JobItem = ({ job }) => {
       job.job_start_date,
       job.job_end_date
     ).includes("gündür");
-    return isDateInvalid ? "red" : isDateValid ? "green" : "#9f9fa1";
+    return isDateInvalid ? COLORS.red : isDateValid ? COLORS.green : COLORS.gray2;
   };
 
   return (

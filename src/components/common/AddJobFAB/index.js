@@ -2,6 +2,7 @@
 import { TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import styles from "./styles";
+import { COLORS, SIZES } from '../../../theme';
 
 // hooks
 import { useNavigation } from "@react-navigation/native";
@@ -20,7 +21,7 @@ const AddJobFAB = () => {
       onPress={onPress}
       testID="add-job-fab"
     >
-      <FontAwesome name="plus" size={24} color="#1D212D" />
+      <FontAwesome name="plus" size={SIZES.xl} color={COLORS.primary} />
     </TouchableOpacity>
   );
 };

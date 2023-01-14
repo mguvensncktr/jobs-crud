@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
+import { COLORS, SIZES } from '../../../theme';
 
 const styles = StyleSheet.create({
     addJobFAB: {
         width: 60,
         height: 60,
-        backgroundColor: '#DB4914',
+        backgroundColor: COLORS.secondary,
         borderRadius: 50,
         position: 'absolute',
         justifyContent: 'center',

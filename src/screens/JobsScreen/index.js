@@ -4,6 +4,7 @@ import Loading from "../../components/common/Loading";
 import JobItem from "../../components/common/JobItem";
 import AddJobFAB from "../../components/common/AddJobFAB";
 import styles from "./styles";
+import { COLORS } from "../../theme";
 
 // hooks
 import { useEffect, useState } from "react";
@@ -70,15 +71,7 @@ const JobsScreen = () => {
 					<View style={styles.headerContainer}>
 						<Text style={styles.headerText}>İş Ara</Text>
 						<TextInput
-							style={{
-								height: 40,
-								borderColor: '#4E586E',
-								borderWidth: 1,
-								padding: 10,
-								margin: 15,
-								borderRadius: 10,
-								color: "white"
-							}}
+							style={styles.searchInput}
 							value={search}
 							onChangeText={handleSearch}
 							placeholder="Ünvan ve şirket ara..."
@@ -95,7 +88,7 @@ const JobsScreen = () => {
 						refreshControl={
 							<RefreshControl
 								refreshing={refreshLoading}
-								tintColor={"#DB4914"}
+								tintColor={COLORS.secondary}
 								onRefresh={refreshJobs}
 							/>
 						}

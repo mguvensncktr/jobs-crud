@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import { COLORS, SIZES } from "../../theme";
 
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#1D212D",
-        paddingTop: getStatusBarHeight() + 10,
+        backgroundColor: COLORS.primary,
+        paddingTop: getStatusBarHeight() + SIZES.radiusS,
         flex: 1,
     },
     subContainer: { flex: 1, paddingBottom: 45 },
@@ -14,23 +15,23 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginLeft: 10,
     },
-    goBackText: { color: "#DB4914", marginLeft: 5, fontSize: 20 },
+    goBackText: { color: COLORS.secondary, marginLeft: 5, fontSize: SIZES.lg },
     fieldContainer: {
         marginHorizontal: 10,
         marginTop: 20,
     },
-    fieldHeader: { color: "white", fontSize: 20, fontWeight: "700" },
-    descriptionText: { color: "white", fontSize: 16, marginTop: 10 },
+    fieldHeader: { color: COLORS.white, fontSize: SIZES.lg, fontWeight: "700" },
+    descriptionText: { color: COLORS.white, fontSize: SIZES.reg, marginTop: 10 },
     applicationDateContainer: {
         marginHorizontal: 10,
         marginTop: 20,
         flexDirection: "row",
         alignItems: "center",
     },
-    lastApplicationDateText: { color: "white", fontSize: 18, fontWeight: "700" },
+    lastApplicationDateText: { color: COLORS.white, fontSize: SIZES.md, fontWeight: "700" },
     noApplicationsText: {
-        color: "white",
-        fontSize: 16,
+        color: COLORS.white,
+        fontSize: SIZES.reg,
         fontWeight: "500",
         marginLeft: 5,
     }
