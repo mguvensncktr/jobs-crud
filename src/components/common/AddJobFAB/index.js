@@ -4,11 +4,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import styles from "./styles";
 import { COLORS, SIZES } from '../../../theme';
 
-// hooks
-import { useNavigation } from "@react-navigation/native";
 
-const AddJobFAB = () => {
-  const navigation = useNavigation();
+const AddJobFAB = ({ navigation }) => {
 
   const onPress = () => {
     navigation.navigate("AddJob");

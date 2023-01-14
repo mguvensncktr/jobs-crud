@@ -93,7 +93,7 @@ const JobsScreen = ({ navigation }) => {
 							/>
 						}
 					/>
-					<AddJobFAB />
+					<AddJobFAB navigation={navigation} />
 				</>
 			)}
 		</View>
