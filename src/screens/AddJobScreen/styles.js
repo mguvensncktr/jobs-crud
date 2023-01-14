@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         color: COLORS.white,
         marginTop: 30,
         marginLeft: 10,
-        fontSize: COLORS.xl,
+        fontSize: SIZES.xl,
         fontWeight: "bold",
     },
     fieldContainer: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     },
     titleHeader: {
         color: COLORS.white,
-        fontSize: COLORS.xl,
+        fontSize: SIZES.lg,
         fontWeight: "700"
     },
     titleInput: {
